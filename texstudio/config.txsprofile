@@ -1,0 +1,9 @@
+[texmaker]
+	Files\RestoreSession=false
+	Tools\Commands\bibtex=bibtex build/%.aux
+	Tools\Commands\mkbuilddir=mkdir -p build
+	Tools\Commands\pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -output-directory=build %.tex"
+	Tools\Commands\pre-compile=txs:///mkbuilddir
+	Tools\Log%20Paths=build
+	Tools\PDF%20Paths=build
+	Tools\User%20Order=mkbuilddir
