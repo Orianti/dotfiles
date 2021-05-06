@@ -1,0 +1,14 @@
+[user]
+	email = 51492458+Orianti@users.noreply.github.com
+	name = Orianti
+[init]
+	defaultBranch = main
+[alias]
+	s = status
+	br = branch
+	co = checkout
+	ci = commit
+	
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
