@@ -12,3 +12,4 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	clear = clean -dfX
