@@ -1,5 +1,7 @@
 [texmaker]
 	Files\RestoreSession=false
+	Editor\Completion%20Prefered%20Tab=2
+	Editor\RemoveTrailingWsOnSave=true
 	Tools\Commands\bibtex=bibtex build/%.aux
 	Tools\Commands\mkbuilddir=mkdir -p build
 	Tools\Commands\pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -output-directory=build %.tex"
