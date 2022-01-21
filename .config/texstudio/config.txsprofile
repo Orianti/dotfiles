@@ -3,6 +3,9 @@
 	Editor\Completion%20Prefered%20Tab=2
 	Editor\RemoveTrailingWsOnSave=true
 	Tools\Commands\bibtex=bibtex build/%.aux
+	Tools\Commands\biber="biber build/%"
+	Tools\Commands\bibliography=txs:///biber
+	Tools\Commands\compile=txs:///pdflatex
 	Tools\Commands\mkbuilddir=mkdir -p build
 	Tools\Commands\pdflatex="pdflatex -synctex=1 -interaction=nonstopmode -output-directory=build %.tex"
 	Tools\Commands\pre-compile=txs:///mkbuilddir
