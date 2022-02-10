@@ -2,7 +2,7 @@
 	email = 51492458+Orianti@users.noreply.github.com
 	name = Orianti
 [init]
-	defaultBranch = main
+	defaultBranch = master
 [alias]
 	s = status
 	br = branch

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+sudo apt update && apt upgrade -y
+
+
+# Basic
+sudo apt install -y	\
+	cmake		\
+	curl		\
+	htop		\
+	vim
+
+sudo apt install -y git
+cp -R .config/git $HOME/.config/
+
+
+# Zsh
+sudo apt install -y zsh
+chsh -s $(which zsh)
+
+sudo apt install -y fonts-powerline
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+cp .zshrc $HOME
+
+
+# KeePassXC
+sudo apt install -y keepassxc
+cp -R .config/keepassxc $HOME/.config/
+
+
+# TeX
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -P /tmp/
+tar -xf /tmp/install-tl-*.tar.gz
+sudo perl /tmp/install-tl-*/install-tl -profile texlive.profile
+rm -rf /tmp/install-tl-*
+
+sudo apt install --no-install-recommends -y texstudio
+cp -R .config/texstudio $HOME/.config/
+
+
+# Customization
+sudo apt install -y	\
+	font-manager	\
+	gnome-tweaks	\
+	grub-customizer
+
+
+# Other
+sudo apt install -y		\
+	discord			\
+	filezilla		\
+	google-chrome-stable	\
+	telegram-desktop	\
+	transmission		\
+	vlc
+
+sudo snap install spotify
