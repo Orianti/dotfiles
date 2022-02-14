@@ -3,7 +3,7 @@
 CO='\033[0;32m'
 NC='\033[0m'
 
-printf "${CO}── Обновление всех пакетов ─────────────────────────────────────────────────────${NC}\n"
+printf "${CO}── Обновление пакетов ──────────────────────────────────────────────────────────${NC}\n"
 sudo apt update
 sudo apt upgrade -y
 
@@ -12,11 +12,7 @@ sudo apt install -y git
 cp -R .config/git/ $HOME/.config/
 
 printf "${CO}── Другие базовые пакеты ───────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y	\
-	cmake		\
-	curl		\
-	htop		\
-	vim
+sudo apt install -y cmake curl htop vim
 
 printf "${CO}── Zsh ─────────────────────────────────────────────────────────────────────────${NC}\n"
 sudo apt install -y zsh
@@ -30,19 +26,16 @@ git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 cp .zshrc $HOME
 
-printf "${CO}── KeePassXC ───────────────────────────────────────────────────────────────────${NC}\n"
-sudo snap install keepassxc
-cp -R .config/keepassxc $HOME/.config/
-
 printf "${CO}── Персонализация ──────────────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y	\
-	font-manager	\
-	gnome-tweaks	\
-	grub-customizer
+sudo apt install -y font-manager gnome-tweaks grub-customizer
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
 sudo apt install -y gnome-themes-extra gtk2-engines-murrine sassc
-git clone --depth=1 https://github.com/vinceliuice/Orchis-theme.git /tmp/
+git clone --depth=1 https://github.com/vinceliuice/Orchis-theme.git /tmp/Orchis-theme/
 bash /tmp/Orchis-theme/install.sh -t all -c dark --tweaks compact
+
+printf "${CO}── KeePassXC ───────────────────────────────────────────────────────────────────${NC}\n"
+sudo apt install keepassxc
+cp -R .config/keepassxc $HOME/.config/
 
 printf "${CO}── Google Chrome ───────────────────────────────────────────────────────────────${NC}\n"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
