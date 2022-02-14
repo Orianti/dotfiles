@@ -25,20 +25,24 @@ chsh -s $(which zsh)
 printf "${CO}── Oh My Zsh, плагины и тема ───────────────────────────────────────────────────${NC}\n"
 sudo apt install -y fonts-powerline
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 cp .zshrc $HOME
 
 printf "${CO}── KeePassXC ───────────────────────────────────────────────────────────────────${NC}\n"
 sudo snap install keepassxc
 cp -R .config/keepassxc $HOME/.config/
 
-printf "${CO}── Пакеты персонализации ───────────────────────────────────────────────────────${NC}\n"
+printf "${CO}── Персонализация ──────────────────────────────────────────────────────────────${NC}\n"
 sudo apt install -y	\
 	font-manager	\
 	gnome-tweaks	\
 	grub-customizer
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+sudo apt install -y gnome-themes-extra gtk2-engines-murrine sassc
+git clone --depth=1 https://github.com/vinceliuice/Orchis-theme.git /tmp/
+bash /tmp/Orchis-theme/install.sh -t all -c dark --tweaks compact
 
 printf "${CO}── Google Chrome ───────────────────────────────────────────────────────────────${NC}\n"
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
