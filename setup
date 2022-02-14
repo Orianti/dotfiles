@@ -1,60 +1,48 @@
 #!/bin/bash
 
-sudo apt update && apt upgrade -y
+CO='\033[0;32m'
+NC='\033[0m'
 
+printf "${CO}── Обновление всех пакетов ─────────────────────────────────────────────────────${NC}\n"
+sudo apt update
+sudo apt upgrade -y
 
-# Basic
+printf "${CO}── git ─────────────────────────────────────────────────────────────────────────${NC}\n"
+sudo apt install -y git
+cp -R .config/git/ $HOME/.config/
+
+printf "${CO}── Другие базовые пакеты ───────────────────────────────────────────────────────${NC}\n"
 sudo apt install -y	\
 	cmake		\
 	curl		\
 	htop		\
 	vim
 
-sudo apt install -y git
-cp -R .config/git $HOME/.config/
-
-
-# Zsh
+printf "${CO}── Zsh ─────────────────────────────────────────────────────────────────────────${NC}\n"
 sudo apt install -y zsh
 chsh -s $(which zsh)
 
+printf "${CO}── Oh My Zsh, плагины и тема ───────────────────────────────────────────────────${NC}\n"
 sudo apt install -y fonts-powerline
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
 cp .zshrc $HOME
 
-
-# KeePassXC
-sudo apt install -y keepassxc
+printf "${CO}── KeePassXC ───────────────────────────────────────────────────────────────────${NC}\n"
+sudo snap install keepassxc
 cp -R .config/keepassxc $HOME/.config/
 
-
-# TeX
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz -P /tmp/
-tar -xf /tmp/install-tl-*.tar.gz
-sudo perl /tmp/install-tl-*/install-tl -profile texlive.profile
-rm -rf /tmp/install-tl-*
-
-sudo apt install --no-install-recommends -y texstudio
-cp -R .config/texstudio $HOME/.config/
-
-
-# Customization
+printf "${CO}── Пакеты персонализации ───────────────────────────────────────────────────────${NC}\n"
 sudo apt install -y	\
 	font-manager	\
 	gnome-tweaks	\
 	grub-customizer
 
+printf "${CO}── Google Chrome ───────────────────────────────────────────────────────────────${NC}\n"
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
+sudo apt install /tmp/google-chrome-stable_current_amd64.deb
 
-# Other
-sudo apt install -y		\
-	discord			\
-	filezilla		\
-	google-chrome-stable	\
-	telegram-desktop	\
-	transmission		\
-	vlc
-
-sudo snap install spotify
+printf "${CO}── Соцсети и мультимедиа ───────────────────────────────────────────────────────${NC}\n"
+sudo snap install telegram-desktop discord spotify vlc
