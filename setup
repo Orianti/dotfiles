@@ -3,43 +3,56 @@
 CO='\033[0;32m'
 NC='\033[0m'
 
-printf "${CO}── Обновление пакетов ──────────────────────────────────────────────────────────${NC}\n"
-sudo apt update
-sudo apt upgrade -y
 
-printf "${CO}── git ─────────────────────────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y git
+printf "${CO}── Обновление и установка пакетов ──────────────────────────────────────────────${NC}\n"
+sudo apt update && apt upgrade -y
+sudo apt install -y	\
+	cmake		\
+	curl		\
+	git		\
+	htop		\
+	vim
 cp -R .config/git/ $HOME/.config/
 
-printf "${CO}── Другие базовые пакеты ───────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y cmake curl htop vim
 
-printf "${CO}── Zsh ─────────────────────────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y zsh
+printf "${CO}── Zsh и Oh My Zsh ─────────────────────────────────────────────────────────────${NC}\n"
+sudo apt install -y zsh fonts-powerline
 chsh -s $(which zsh)
-
-printf "${CO}── Oh My Zsh, плагины и тема ───────────────────────────────────────────────────${NC}\n"
-sudo apt install -y fonts-powerline
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 cp .zshrc $HOME
 
+
 printf "${CO}── Персонализация ──────────────────────────────────────────────────────────────${NC}\n"
-sudo apt install -y font-manager gnome-tweaks grub-customizer
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-sudo apt install -y gnome-themes-extra gtk2-engines-murrine sassc
+sudo apt install -y		\
+	font-manager		\
+	gtk2-engines-murrine	\
+	gnome-shell-extensions	\
+	gnome-themes-extra	\
+	gnome-tweaks		\
+	grub-customizer		\
+	sassc
 git clone --depth=1 https://github.com/vinceliuice/Orchis-theme.git /tmp/Orchis-theme/
 bash /tmp/Orchis-theme/install.sh -t all -c dark --tweaks compact
+gsettings set org.gnome.desktop.interface gtk-theme "Orchis-grey-dark-compact"
+gsettings set org.gnome.shell.extensions.user-theme name "Orchis-grey-dark-compact"
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts.git /tmp/nerd-fonts/
+bash /tmp/nerd-fonts/install.sh JetBrainsMono
+gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMonoNL Nerd Font Mono 13"
+
 
 printf "${CO}── KeePassXC ───────────────────────────────────────────────────────────────────${NC}\n"
-sudo apt install keepassxc
+sudo apt install -y keepassxc
 cp -R .config/keepassxc $HOME/.config/
 
-printf "${CO}── Google Chrome ───────────────────────────────────────────────────────────────${NC}\n"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
-sudo apt install /tmp/google-chrome-stable_current_amd64.deb
 
-printf "${CO}── Соцсети и мультимедиа ───────────────────────────────────────────────────────${NC}\n"
-sudo snap install telegram-desktop discord spotify vlc
+printf "${CO}── Браузер, соцсети и мультимедиа ──────────────────────────────────────────────${NC}\n"
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /tmp/
+sudo apt install -y /tmp/google-chrome-stable_current_amd64.deb
+sudo snap install		\
+	telegram-desktop	\
+	discord			\
+	spotify			\
+	vlc
